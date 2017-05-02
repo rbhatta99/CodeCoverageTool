@@ -1,5 +1,7 @@
 package edu.utdallas;
 
+import java.io.FileWriter;
+
 import org.junit.runner.Description;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
@@ -33,10 +35,20 @@ public class JUnitExecListener extends RunListener {
     
     public void testFailure(Failure failure) throws Exception {
 //    	super(testFailure);
-        System.out.println("Failed: " + failure.getDescription().getClassName());
+       try{
+    	   FileWriter out= new FileWriter("Failure.txt");
+    	   out.write("Failed: " + failure.getDescription().getClassName()+" Time taken:"+(System.currentTimeMillis()-start)+'\n');
+    	System.out.println("Failed: " + failure.getDescription().getClassName());
         System.out.println("Time taken:"+(System.currentTimeMillis()-start));
+        out.close();
         runNotifier.pleaseStop();
         System.exit(0);
+       
+        
+       }catch(Exception e)
+       {
+    	   e.printStackTrace();
+       }
         
     }
 

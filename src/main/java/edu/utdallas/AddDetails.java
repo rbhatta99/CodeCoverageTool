@@ -27,8 +27,7 @@ public class AddDetails {
 	public static void add(String details)
 	{
 		
-		//System.out.println(details);
-		//System.out.println(coverage.contains(details));
+		
 		
 		
 		if(details!=null){
@@ -37,11 +36,11 @@ public class AddDetails {
 				covlist.add(details);
 				count++;
 				i++;
-		
+				//System.out.println(i);
 		str.append(details).append('\n');
 		}
 		}
-//		System.out.println(i);
+		
 	}
 
 	public int getcount()
@@ -50,24 +49,7 @@ public class AddDetails {
 	}
 	
 	public static void printdetails(){
-		//Iterator<String> It=coverage.iterator();
-		//StringBuilder str=new StringBuilder();
-//		while(It.hasNext())
-//		{
-//		
-//		
-//			//System.out.println(It.next());
-//			String name=It.next();
-//			if(name.contains("org")){
-////				name=name.substring(1);
-//				name=name.replace("/", ".");
-//				name=name.replace(";", "");
-//			
-//				str.append(name).append('\n');	
-//			
-//		}
-//		}//end of while
-		//str.append("total lines covered:"+i+"\n");
+		
 		
 		
 		writetofile(str.toString());
@@ -79,17 +61,17 @@ public class AddDetails {
 	
 	public static void addtolists(String s)
 	{
-//		System.out.println("Rohit"+covlist.size());
+		//System.out.println("Rohit"+covlist.size());
 //		List<String> tmp=new 
 		if(coverageLists.containsKey(s)){
 			List<String> tmp=new ArrayList<String>();
-			tmp.addAll(covlist);
+			tmp.addAll(coverage);
 			tmp.addAll(coverageLists.get(s));
 //			covlist.addAll(coverageLists.get(s));
 			coverageLists.put(s, tmp);
 		}
 		else
-			coverageLists.put(s, covlist);
+			coverageLists.put(s, new ArrayList<>(coverage));
 			
 	}
 	
@@ -103,12 +85,12 @@ public class AddDetails {
 		
 		for(Object key: map)
 		{
-//			out.write(((Map.Entry<String, List<String>>) key).getKey() + " : "+ ((Map.Entry<String, List<String>>) key).getValue().size()+'\n');
-			out.write(((Map.Entry<String, List<String>>) key).getKey());
+			out.write(((Map.Entry<String, List<String>>) key).getKey() + " : "+ ((Map.Entry<String, List<String>>) key).getValue().size()+'\n');
+//			out.write(((Map.Entry<String, List<String>>) key).getKey());
 //			System.out.println(key+":"+coverageLists.get(key)+"\n");
 		}
 		out.close();
-		PrintWriter writer = new PrintWriter("totalTestSuite.java", "UTF-8");
+		PrintWriter writer = new PrintWriter("src/test/java/totalTestSuite.java", "UTF-8");
         writer.println("import org.junit.runner.RunWith;");
         writer.println("import org.junit.runners.Suite;");
         writer.println("import org.junit.runners.Suite.SuiteClasses;");
@@ -171,7 +153,7 @@ public class AddDetails {
 			}
 			out.close();
 			
-			PrintWriter writer = new PrintWriter("AdditionalTestSuite.java", "UTF-8");
+			PrintWriter writer = new PrintWriter("src/test/java/AdditionalTestSuite.java", "UTF-8");
 	        writer.println("import org.junit.runner.RunWith;");
 	        writer.println("import org.junit.runners.Suite;");
 	        writer.println("import org.junit.runners.Suite.SuiteClasses;");
@@ -208,10 +190,7 @@ public class AddDetails {
 		        return ((Map.Entry<String, List<String>>) o2).getValue().size()-(((Map.Entry<String, List<String>>) o1).getValue().size());
 		    }
 		});
-//		for (Object e : a) {
-//		    System.out.println(((Map.Entry<String, Integer>) e).getKey() + " : "
-//		            + ((Map.Entry<String, Integer>) e).getValue());
-//		}
+
 		
 		return a;
 	}
