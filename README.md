@@ -1,6 +1,7 @@
 
 # automated-coverage-collection-tool
 
+Team: Rohit Bhattacharjee and Paritosh Sundriyal
 Required jars to run the tool:
 asm5.2-jar download link: https://mvnrepository.com/artifact/org.ow2.asm/asm/5.2
 
