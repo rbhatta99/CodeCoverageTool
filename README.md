@@ -76,24 +76,20 @@ How to run the agent.
               
               and run mvn test. This will run the test cases in order of total prioritization. The failure time will be found in                        Failure.txt
       Case 4: Delete 
-            
+         <includes>
+                <include>totalTestSuite.java</include>
+              </includes>
+              <excludes>
+                <exclude>AdditionalTestSuite.java</exclude>
+              </excludes>
+	      
+	      and replace with
 	      <includes>
-                <include>totalTestSuite.java</include>
-              </includes>
-              <excludes>
-                <exclude>AdditionalTestSuite.java</exclude>
-              </excludes>
-            
-	    
-         and replace with 
-	    
-               <includes>
                 <include>AdditionalTestSuite.java</include>
               </includes>
               <excludes>
                 <exclude>totalTestSuite.java</exclude>
               </excludes>
 	      
-              And run mvn test. This will run the testcases according to the additional prioritization.The failure time will be found in                        Failure.txt
-      
-      
+	      And run mvn test. This will run the test cases according to the additional priority. The failure will be found in Failure.txt
+	   
