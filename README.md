@@ -16,7 +16,6 @@ How to run the agent.
     
     Case 1:
     In the pom.xml of the commons/dbutils, paste the following in the plugin:
-        ```xml
 	<plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -34,10 +33,10 @@ How to run the agent.
 			     </properties>  
         </configuration>
       </plugin>
-      ```
+
       Try executing the project using mvn test. If the project runs, go to case 2. 
       If you incur a classDefNotFound error for org/asm/... add the following to the dependencies:
-      ```xml
+
       <dependency>
       <groupId>asm</groupId>
       <artifactId>asm</artifactId>
@@ -45,59 +44,55 @@ How to run the agent.
       <scope>system</scope>
       <systemPath>{location of the asm jar on your system}/asm-5.2.jar</systemPath>
       </dependency>
-      ```
+
       Execute with mvn test
       
       
       Case 2: After execution, you will see a message that totalTestSuite.java and AdditionalTestSuite.java has been created, which you can check by going into the src/test/java folder.
       add the following to the maven-surefire-plugin confiuration:
-             ```xml
+
 	     <excludes>
                 <exclude>totalTestSuite.java</exclude>
                 <exclude>AdditionalTestSuite.java</exclude>
               </excludes>
-              ```
+
 	      
            This will make the project execute with no priorities.
            execute the project with mvn test after introducing a bug anywhere in the source code. If the coverage tool finds the bug, it             writes the time taken to find the first bug in failure.txt found in the root folder of the example project.
            
        Case 3: Delete 
-           ```xml
 	   <excludes>
                 <exclude>totalTestSuite.java</exclude>
                 <exclude>AdditionalTestSuite.java</exclude>
               </excludes>
-              ```
-              and replace with  
-	      ```xml
+
+              and replace with 
               <includes>
                 <include>totalTestSuite.java</include>
               </includes>
               <excludes>
                 <exclude>AdditionalTestSuite.java</exclude>
               </excludes>
-           ```   
+              
               and run mvn test. This will run the test cases in order of total prioritization. The failure time will be found in                        Failure.txt
-      Case 3: Delete 
-              ```xml
+      Case 4: Delete 
+            
 	      <includes>
                 <include>totalTestSuite.java</include>
               </includes>
               <excludes>
                 <exclude>AdditionalTestSuite.java</exclude>
               </excludes>
-              ```
-
+            
+	    
          and replace with 
-	      ```xml
+	    
                <includes>
                 <include>AdditionalTestSuite.java</include>
               </includes>
               <excludes>
                 <exclude>totalTestSuite.java</exclude>
               </excludes>
-              ```
-	      
 	      
               And run mvn test. This will run the testcases according to the additional prioritization.The failure time will be found in                        Failure.txt
       
