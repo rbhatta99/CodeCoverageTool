@@ -1,4 +1,5 @@
- # automated-coverage-collection-tool
+
+# automated-coverage-collection-tool
 
 Required jars to run the tool:
 asm5.2-jar download link: https://mvnrepository.com/artifact/org.ow2.asm/asm/5.2
@@ -10,10 +11,15 @@ How to run the agent.
   1. open the command prompt/terminal, and navigate to the codeCoverage folder
   2. run: mvn clean install
      This will create the agent.jar in the target folder.
+     
   3.you have to run the example project in 4 different cases:
+  
     case 1: Creating the total and additional prioritization test cases
+  
     case 2: Executing the project with the default test cases
+  
     case 3: Executing the project with total prioritization test cases
+  
     case 4: Executing the project with aditional prioritization test cases
     
     Case 1:
@@ -76,7 +82,7 @@ How to run the agent.
                 <exclude>AdditionalTestSuite.java</exclude>
               </excludes>
               
-              and run mvn test. This will run the test cases in order of total prioritization. The failure time will be found in                        Failure.txt
+         and run mvn test. This will run the test cases in order of total prioritization. The failure time will be found in Failure.txt
       Case 4: Delete 
          <includes>
                 <include>totalTestSuite.java</include>
@@ -93,5 +99,5 @@ How to run the agent.
                 <exclude>totalTestSuite.java</exclude>
               </excludes>
 	      
-	      And run mvn test. This will run the test cases according to the additional priority. The failure will be found in Failure.txt
+	 And run mvn test. This will run the test cases according to the additional priority. The failure will be found in Failure.txt
 	   
